@@ -11,15 +11,9 @@ import android.widget.TextView;
 
 import com.example.pier.sveglia.R;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-import static helper.Constants.POS_HOURS;
-import static helper.Constants.POS_LABEL;
-import static helper.Constants.POS_MINUTES;
+import static helper.Constants.*;
 
 /**
  * Created by pier on 19/06/17.
@@ -102,11 +96,10 @@ public class CustomAdapter extends BaseAdapter {
         txtDetails.setText(details);
 
         return convertView;
-
-
     }
 
     public void capiamoci() {
+        // Spero di non dover rientrare mai più qui dentro
         Map<Integer, ArrayList<String>> mMap = getData();
         String stringa = null;
         Log.i(TAG, "SONO ESAUSTO " + (mMap == null));

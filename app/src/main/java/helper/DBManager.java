@@ -37,7 +37,7 @@ public class DBManager {
 
     public void doQuery(String s) {
         SQLiteDatabase db = getDbHelper().getWritableDatabase();
-        db.rawQuery(s, null);
+        db.execSQL(s);
 
     }
     public Cursor query() {
@@ -45,12 +45,7 @@ public class DBManager {
 
         try {
             SQLiteDatabase db = getDbHelper().getReadableDatabase();
-            //cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
-            //cursor = db.query(TABLE_NAME, new String[]{C_ID, C_LABEL, C_YEAR, C_MONTH, C_DAY, C_HOURS, C_MINUTES}, null, null, null, null, null);
-
             cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-            //cursor = db.rawQuery("DELETE * FROM " + TABLE_NAME, null);
-
         } catch(SQLiteException e) {
             Log.e(TAG, e.getMessage());
         }
