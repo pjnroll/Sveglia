@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="set_alarm">Imposta</string>
+    <string name="alarm_label">Descrizione della sveglia</string>
+    <string name="new_alarm">Nuova</string>
+</resources>

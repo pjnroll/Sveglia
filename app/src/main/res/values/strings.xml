@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sveglia</string>
+    <string name="action_settings">Settings</string>
+    <string name="set_alarm">Set</string>
+    <string name="alarm_label">Alarm\'s description</string>
+    <string name="new_alarm">New</string>
+</resources>
