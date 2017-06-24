@@ -18,8 +18,6 @@ import android.widget.ListView;
 
 import java.util.*;
 
-import helper.DBManager;
-
 import static helper.Constants.*;
 import helper.*;
 
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         db = new DBManager(this);
@@ -75,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             getBaseContext().deleteDatabase(DB_NAME);
             updateListView();
         }
+        Alarm.resetCount();
     }
 
     private void updateListView() {
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         CustomAdapter adapter = null;
         Cursor crs = db.query();
         Map<Integer, ArrayList<String>> data = new HashMap<>();
-        if (crs.getCount() != 0) {
+        if (crs != null && crs.getCount() != 0) {
             Log.i(TAG, "**********COUNT = " + crs.getCount() + "**********");
             while (crs.moveToNext()) {
                 ArrayList<String> values = new ArrayList<>();

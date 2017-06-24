@@ -3,12 +3,11 @@ package helper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
-import java.util.Date;
+import com.example.pier.sveglia.Alarm;
 
 import static helper.Constants.*;
 
@@ -21,7 +20,7 @@ public class DBManager {
         dbHelper = new DBHelper(ctx);
     }
 
-    public boolean insert(String label, int y, int mo, int d, int h, int mi) {
+    public boolean store(String label, int y, int mo, int d, int h, int mi) {
         SQLiteDatabase db = getDbHelper().getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -33,6 +32,10 @@ public class DBManager {
         cv.put(C_MINUTES, mi);
         return (db.insert(TABLE_NAME, null, cv) != -1) ? true : false;
 
+    }
+
+    public boolean insert(Alarm a) {
+        return store(a.getLabel(), a.getYear(), a.getMonth(), a.getDay(), a.getHours(), a.getMinutes());
     }
 
     public void doQuery(String s) {

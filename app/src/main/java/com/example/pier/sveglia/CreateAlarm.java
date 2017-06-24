@@ -23,6 +23,8 @@ public class CreateAlarm extends AppCompatActivity {
     private EditText tvLabel;
     private Button btnSet;
 
+    private Alarm mAlarm;
+
     private String label;
     private int year;
     private int month;
@@ -61,20 +63,42 @@ public class CreateAlarm extends AppCompatActivity {
     public void setAlarm() {
         Toast.makeText(getBaseContext(), "CI ENTRO", Toast.LENGTH_LONG);
         Log.i(TAG, "SONO ENTRATO");
+
+        Date d = new Date();
+
+        /*label = tvLabel.getEditableText().toString();
+
+        year = d.getYear();
+        month = d.getMonth();
+        day = d.getDay();
+
         int h = tp.getHour();
         int m = tp.getMinute();
 
         hours = h;
         minutes = m;
 
-        Date d = new Date();
-        year = d.getYear();
-        month = d.getMonth();
-        day = d.getDay();
+        mAlarm = new Alarm(label, year, month, day, h, m);
+*/
+        String l = tvLabel.getEditableText().toString();
+        if (l.equals(""))
+            mAlarm = new Alarm(d.getYear(),
+                    d.getMonth(),
+                    d.getDay(),
+                    tp.getHour(),
+                    tp.getMinute());
+        else
+            mAlarm = new Alarm(l,
+                    d.getYear(),
+                    d.getMonth(),
+                    d.getDay(),
+                    tp.getHour(),
+                    tp.getMinute());
 
-        label = tvLabel.getEditableText().toString();
 
-        if (db.insert(label, year, month, day, hours, minutes))
+
+
+        if (db.insert(mAlarm))
             Log.i(TAG, "ALLARME CREATO");
         else
             Log.i(TAG, "ERRORE NELLA CREAZIONE");
